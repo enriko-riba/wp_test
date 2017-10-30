@@ -104,18 +104,27 @@ body {
     margin-bottom: 10px;
   }
 
-  img.imperator-sprite{
-    object-fit: none;
-    object-position: 0 0;
-    width: 256px;
-    height: 394px;
-
-    animation: play 2.0s steps(4, start) infinite;
+  .img-cont {
+      display: inline-block;
+      width: 256px;
+      height: 394px;
+      position: relative;
+      overflow: hidden;
   }
-  @keyframes play {
-    from { object-position: 0 0;  }
-    to { object-position: -768px 0; }
- }
+
+  .imperator-sprite {
+    display: block;
+    height: 100%;
+    width: auto;
+    max-width: none;
+    transform-origin: center;
+    animation: img 4s steps(6) infinite;
+  }
+
+  @keyframes img {
+      from {transform: translateX(0);}
+      to {transform: translateX(-100%);}
+  }
 
   @media(min-width:768px) {
     #wrapper {
