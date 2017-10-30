@@ -20,10 +20,11 @@ let plugins: Array<webpack.Plugin> = [
                                       new CleanWebpackPlugin(['dist']), 
                                       new CopyWebpackPlugin([{from: 'src/assets/**/*.png', to:'assets/[name].[ext]'}]),
                                       new CopyWebpackPlugin([{from: 'node_modules/bootstrap/dist/css/bootstrap.min.css', to:'[name].[ext]'}]),
-                                      new ProvidePlugin({jQuery: 'jquery',$: 'jquery', jquery: 'jquery'}),
-                                      new HtmlWebpackPlugin({ template: './src/index.html', inject: true }), 
+                                      new CopyWebpackPlugin([{from: 'node_modules/bootstrap/fonts', to:'fonts/[name].[ext]'}]),
+                                      new HtmlWebpackPlugin({ template: './src/index.html'}), 
                                       new ExtractTextPlugin('style.css'),
-                                      new CommonsChunkPlugin({names:["common", "wp_stuff"]})
+                                      new CommonsChunkPlugin({names:["common", "wp_stuff"]}),
+                                      new ProvidePlugin({jQuery: 'jquery',$: 'jquery', jquery: 'jquery'}),
                                     ];
 if(env==='build'){
     plugins.push( new UglifyJSPlugin({ parallel: true, sourceMap: true }))

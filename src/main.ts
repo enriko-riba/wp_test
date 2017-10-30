@@ -1,9 +1,8 @@
 import * as $ from "jquery";
 import "bootstrap";
 
-
 import "./site.scss";
-import {Greeter} from "./app"; 
+import {Greeter} from "./app";
 
 class Main{
     constructor(){ 
@@ -13,7 +12,7 @@ class Main{
             this.btnGreetClick();
         });
 
-        $("#menu-toggle").click(function(e) {
+        $(".sidebar-toggle").click(function(e) {
             e.preventDefault();
             $("#wrapper").toggleClass("toggled");
         });
