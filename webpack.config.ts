@@ -1,4 +1,3 @@
-
 import * as webpack from 'webpack';
 
 interface Config extends webpack.Configuration {
@@ -6,16 +5,22 @@ interface Config extends webpack.Configuration {
         rules: webpack.NewUseRule[]
     }
 }
+
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const CommonsChunkPlugin = require("webpack/lib/optimize/CommonsChunkPlugin");
+const ProvidePlugin = require("webpack/lib/ProvidePlugin");
 const env = require('yargs').argv.env;
 
 let plugins: Array<webpack.Plugin> = [
                                       new CleanWebpackPlugin(['dist']), 
+                                      new CopyWebpackPlugin([{from: 'src/assets/**/*.png', to:'assets/[name].[ext]'}]),
+                                      new CopyWebpackPlugin([{from: 'node_modules/bootstrap/dist/css/bootstrap.min.css', to:'[name].[ext]'}]),
+                                      new ProvidePlugin({jQuery: 'jquery',$: 'jquery', jquery: 'jquery'}),
                                       new HtmlWebpackPlugin({ template: './src/index.html', inject: true }), 
                                       new ExtractTextPlugin('style.css'),
                                       new CommonsChunkPlugin({names:["common", "wp_stuff"]})
@@ -26,28 +31,24 @@ if(env==='build'){
 
 const config : Config = {
     entry: {
-        common: ["jquery"], // vendor libraries bundle
+        common: ["jquery", "bootstrap"], // vendor libraries bundle
         main: "./src/main.ts",
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        //filename: '[name].js'
-        filename: "[name].[id].js",
-		chunkFilename: "[id].js"
+        filename: "[name].[hash:6].js",
+		chunkFilename: "[hash:6].js"
     },
 
     // Enable sourcemaps for debugging webpack's output.
     devtool: "source-map",
+
     resolve: {
         extensions: [".ts", ".tsx", ".js", ".css", ".sccs"]
     },
     plugins: plugins,
     module: {
-        rules: [
-            {
-                test: /\.css$/,
-                use: 'style-loader'
-            },
+        rules: [            
             {
                 test: /\.tsx?$/,
                 use: "ts-loader",
@@ -67,11 +68,20 @@ const config : Config = {
                 use: "file-loader?name=assets/[hash:6].[ext]"
             },
             {
-                test: /\.scss$/i,
+                test: /\.(scss|css)$/i,
                 exclude: /node_modules/,
+                // use: [ 
+                //     {loader: "style-loader"}, 
+                //     {loader: 'css-loader', options: {sourceMap: true}}, 
+                //     {loader: 'sass-loader', options: {sourceMap: true}},
+                // ]
                 use: ExtractTextPlugin.extract({
                     use: ['css-loader', 'sass-loader']
                 })
+            },
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader']
             }
         ]
     }
