@@ -32,7 +32,7 @@ if(env==='build'){
 
 const config : Config = {
     entry: {
-        common: ["jquery", "bootstrap"], // vendor libraries bundle
+        common: ["jquery", "bootstrap", "knockout"], // vendor libraries bundle
         main: "./src/main.ts",
     },
     output: {
@@ -83,7 +83,11 @@ const config : Config = {
             {
                 test: /\.css$/,
                 use: ['style-loader', 'css-loader']
-            }
+            },
+            {   //  for ko html templates
+                test: /\.html$/,
+                use: 'raw-loader'
+              }
         ]
     }
 }
