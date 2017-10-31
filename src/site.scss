@@ -2,6 +2,8 @@ $background-color: #000000;
 $color: #e7e424;
 $p-color:#7a7a60;
 
+$sidebar-width: 180px;
+
 html, body {
     background-color: $background-color;
     color: $color;
@@ -20,27 +22,37 @@ body {
   }
    
   #wrapper.toggled {
-    padding-left: 250px;
+    padding-left: $sidebar-width;
   }
   
   #sidebar-wrapper {
-    z-index: 1000;
     position: fixed;
-    left: 250px;
-    width: 0;
+    left: $sidebar-width;
+    top: 55px;
     height: 100%;
-    margin-left: -250px;
-    overflow-y: auto;
+    margin-left: -$sidebar-width;
     background: #000;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
-    overflow-x: hidden;
+    overflow: hidden;
   }
   
+  
+  .sidebar-toggle{
+    background-color: transparent;
+    color: #5f5f44;
+    font-size: 24px;
+    border: none;
+    padding: 0;
+  }
+  .sidebar-toggle:focus {
+    outline: transparent;
+  }
+
   #wrapper.toggled #sidebar-wrapper {
-    width: 250px;
+    width: $sidebar-width;
   } 
   
   #page-content-wrapper {
@@ -51,7 +63,7 @@ body {
   
   #wrapper.toggled #page-content-wrapper {
     position: absolute;
-    margin-right: -250px;
+    margin-right: -$sidebar-width;
   }
   
   
@@ -60,7 +72,7 @@ body {
   .sidebar-nav {
     position: absolute;
     top: 0;
-    width: 250px;
+    width: $sidebar-width;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -102,35 +114,15 @@ body {
     background: none;
   }
   
-  .sidebar-nav .icon-bar {
-    display: block;
-    width: 25px;
-    height: 3px;
-    border-radius: 1px;
-    background-color: rgb(224, 75, 75);
-    margin-bottom: 2px;
-  }
-  #wrapper.toggled .icon-bar, #wrapper .icon-left {
+  #wrapper.toggled .glyphicon-chevron-right, #wrapper .glyphicon-chevron-left {
     display: none;
+    transition: all 0.5s ease;
   }
-  #wrapper.toggled .icon-left {
+  #wrapper.toggled .glyphicon-chevron-left, #wrapper .glyphicon-chevron-right {
     display: block;
+    transition: all 0.5s ease;
   }
 
-  .sidebar-toggle{
-    position: relative;
-    border-color: transparent;
-    padding: 9px 10px;
-    margin-top: 8px;
-    margin-right: 15px;
-    margin-bottom: 8px;
-    background-color: transparent;
-    border: 1px solid transparent;
-    border-radius: 4px; 
-  }
-  .sidebar-toggle:focus {
-    outline: transparent;
-  }
 
   .description{
     color: $p-color; 
@@ -143,10 +135,8 @@ body {
   }
 
   .img-cont {
-      display: inline-block;
       width: 256px;
       height: 394px;
-      position: relative;
       overflow: hidden;
   }
 
@@ -173,13 +163,13 @@ body {
       padding-left: 0;     
     }
     #wrapper.toggled {
-      padding-left: 250px;
+      padding-left: $sidebar-width;
     }
     #sidebar-wrapper {
       width: 0;
     }
     #wrapper.toggled #sidebar-wrapper {
-      width: 250px;
+      width: $sidebar-width;
     }
     #page-content-wrapper {
       padding-left: 20px;

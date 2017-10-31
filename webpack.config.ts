@@ -24,7 +24,7 @@ let plugins: Array<webpack.Plugin> = [
                                       new HtmlWebpackPlugin({ template: './src/index.html'}), 
                                       new ExtractTextPlugin('style.css'),
                                       new CommonsChunkPlugin({names:["common", "wp_stuff"]}),
-                                      new ProvidePlugin({jQuery: 'jquery',$: 'jquery', jquery: 'jquery'}),
+                                      new ProvidePlugin({jQuery: 'jquery',$: 'jquery', jquery: 'jquery', ko: 'knockout'}),
                                     ];
 if(env==='build'){
     plugins.push( new UglifyJSPlugin({ parallel: true, sourceMap: true }))

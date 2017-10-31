@@ -1,34 +1,13 @@
-import "bootstrap";
-import * as $ from "jquery";
-import * as ko from "knockout";
-
-import "./site.scss";
-import {Greeter} from "./app";
-import {Sidebar} from "./components/sidebar";
-
-
+require('./registerComponents');
 
 class Main{
+    private currentPage = ko.observable("page-home");
+
     constructor(){
-        //  setup button binding
-        $("#btnGreet").on('click', ()=>{
-            this.btnGreetClick();
-        });
-
-        $(".sidebar-toggle").click(function(e) {
-            e.preventDefault();
-            $("#wrapper").toggleClass("toggled");
-        });
-    }
-
-    private btnGreetClick(){         
-        var test = new Greeter().greet('Senorita');
-        console.log(test);
-    }
-    private sb = new Sidebar();
+    }   
 }
+export var vm = new Main();
 
 $(document).ready( ()=> {
-    var main = new Main();
-    ko.applyBindings(main);
+    ko.applyBindings(vm);
 });

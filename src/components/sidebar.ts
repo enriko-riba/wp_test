@@ -1,9 +1,8 @@
 
-import * as ko from "knockout";
 import {Component} from "./decorators";
 
 @Component({
-    name:'sidebarComponent',
+    name:'sidebar',
     template: require('./sidebar.html')
 })
 export class Sidebar {
