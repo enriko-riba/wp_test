@@ -1,13 +1,15 @@
 require('./registerComponents');
+import {Test} from "./test";
 
 class Main{
-    private currentPage = ko.observable("page-home");
+    public currentPage = ko.observable("page-home");
 
     constructor(){
     }   
+    
     public async tester(){
-        var t_module : any = await import('./test');
-        var st = new t_module.Test();
+        var t_module = await import('./test');
+        var st : Test = new t_module.Test();
         st.sayTest();
     }
 }

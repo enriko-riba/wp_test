@@ -1,24 +1,6 @@
 <!-- Sidebar -->
-<ul class="sidebar-nav">
-    <li>
-        <a href="#">Home</a>
-    </li>
-    <li>
-        <a href="#">About</a>
-    </li>
-    <li>
-        <a href="#">Usage</a>
-    </li>
-    <li>
-        <a href="#">Module finder</a>
-    </li>
-    <li>
-        <a href="#">Events</a>
-    </li>
-    <li>
-        <a href="#">Services</a>
-    </li>
-    <li>
-        <a href="#">Contact</a>
-    </li>
+<ul class="sidebar-nav" data-bind="foreach: items">
+    <li data-bind="css: {active: isActive}">
+        <a data-bind="attr: {href: href}, text: text"></a>
+    </li>    
 </ul>
