@@ -1,12 +1,10 @@
-$background-color: #000000;
-$color: #e7e424;
-$p-color:#7a7a60;
 
-$sidebar-width: 180px;
+@charset "UTF-8";
+@import "./variables";
 
 html, body {
     background-color: $background-color;
-    color: $color;
+    color: $body-color;
 } 
 
 body {
@@ -86,7 +84,11 @@ body {
   .sidebar-nav li a {
     display: block;
     text-decoration: none;
-    color: #999999;
+    color: $text-color;
+  }
+  .sidebar-nav li.active a {
+    color: $active-color;
+    background: #142020;
   }
   
   .sidebar-nav li a:hover {
@@ -125,7 +127,7 @@ body {
 
 
   .description{
-    color: $p-color; 
+    color: $text-color; 
     font-size: 16px;
     padding: 5px 5px 0; 
   } 
