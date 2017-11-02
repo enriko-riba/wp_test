@@ -1,4 +1,3 @@
-
 import {Component} from "./decorators";
 
 @Component({

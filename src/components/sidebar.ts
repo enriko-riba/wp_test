@@ -1,35 +1,16 @@
 import { Component } from "./decorators";
 import { vm } from "../main";
+import {LinkItem} from "../LinkItem";
+import {links} from "../links";
 
 @Component({
   name: 'sidebar',
   template: require('./sidebar.html')
 })
 export class Sidebar {
-  private items: Array<MenuItem>;
+  private items: Array<LinkItem>;
 
   constructor() {
-    this.items = [
-      new MenuItem('/home', 'Home', true),
-      new MenuItem('/about', 'About'),
-      new MenuItem('/usage', 'Usage'),
-      new MenuItem('/search', 'Module finder'),
-      new MenuItem('/events', 'Events'),
-      new MenuItem('/services', 'Services'),
-      new MenuItem('/contact', 'Contact'),
-    ];
+    this.items = links;
   }
-}
-
-class MenuItem {
-
-  constructor(href: string, text: string, isActive: boolean = false) {
-    this.isActive(isActive);
-    this.href = href;
-    this.text = text;
-  }
-
-  public isActive = ko.observable(false);
-  public href = "";
-  public text = "";
 }
