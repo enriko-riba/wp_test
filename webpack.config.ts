@@ -20,7 +20,7 @@ const isProd = (env === 'build');
 
 let plugins: Array<webpack.Plugin> = [
                                       new CleanWebpackPlugin(['dist']), 
-                                      new CopyWebpackPlugin([{from: 'src/assets/**/*.png', to:'assets/[name].[ext]'}]),
+                                      new CopyWebpackPlugin([{from: 'src/assets/**/*.jpg', to:'assets/[name].[ext]'}]),
                                       new CopyWebpackPlugin([{from: 'node_modules/bootstrap/dist/css/bootstrap.min.css', to:'[name].[ext]'}]),
                                       new CopyWebpackPlugin([{from: 'node_modules/bootstrap/fonts', to:'fonts/[name].[ext]'}]),
                                       new HtmlWebpackPlugin({ template: './src/index.html',
@@ -79,7 +79,7 @@ const config : Config = {
 
     //  will be passed to webpack-dev-server (only if dev server is used)
     devServer: {
-        contentBase: './client',
+        contentBase: './dist/assets',
         historyApiFallback: true,
         port: 3000,
         hot: true,

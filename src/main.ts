@@ -1,26 +1,24 @@
-require('./RegisterComponents');
+require('./register-components');
 
 import {Test} from "./test";
-import {Router, RouteConfig} from "yester";
+import {Router, Route, Application} from "./SpaApplication";
 import {links} from "./links";
 
-class Main{
-    public currentPage = ko.observable("page-home");
-
-    private router: Router;
+class Main extends Application{
     constructor(){
+        super();
         
-        var routeCfg  = links.map((li)=> { 
-            return { 
-                $: li.href ,
-                enter: ()=> {
-                    this.currentPage(li.component);
-                }
-            }; 
-        });        
-        this.router = new Router(routeCfg, {type: "browser"});
-        this.router.init();
-        //this.router.navigate(links[0].href);
+        links.forEach((li)=> {
+            this.router().AddRoute( new Route(li.href, li.component));
+        }) ;   
+        this.router().SetNotFoundRoute(new Route('/#/notfound', 'route-not-found'));
+        this.IsDebugToConsoleEnabled(true);
+        this.router().Run();   
+        
+        $(".sidebar-toggle").click(function(e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
     }   
     
     // public async tester(){

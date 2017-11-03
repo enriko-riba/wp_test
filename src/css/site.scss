@@ -182,3 +182,30 @@ body {
       margin-right: 0;
     }
   }
+
+  /* page not found error message */
+.error-message{
+  font-size: 18px;
+  color: #ff0000;
+}
+
+.route-not-found{
+color: #d829e0;
+}
+
+/* Gibberish Abpout*/
+.gibb {
+  font-family:'Arial Narrow',Arial,sans-serif;
+  font-size:14pt;
+  padding:8px;
+  margin:8px;
+  width:250px;
+  font-weight:bold;
+  float:left;
+  background-color:rgb(61, 51, 51);
+  border:solid 1px rgb(53, 49, 49);
+  color: $gibb-box-color;
+}
+.gibb-p {
+  color: $gibb-text-color;
+}

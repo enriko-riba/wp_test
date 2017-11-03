@@ -5,11 +5,4 @@ import {Component} from "./decorators";
     template: require('./page-home.html')
 })
 export class Home {
- 
-    constructor(){
-        $(".sidebar-toggle").click(function(e) {
-            e.preventDefault();
-            $("#wrapper").toggleClass("toggled");
-        });
-    }
 }
