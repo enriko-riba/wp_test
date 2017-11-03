@@ -205,6 +205,9 @@ export class Router {
                     }
 
                     self.SetActiveRoute(route);
+
+                    //  fire aFterNavigate
+                    ko.postbox.publish("route:afternavigate");
                 }
 
                 console.info("");
@@ -297,13 +300,7 @@ export class Router {
     *   Activates the given route.
     */
     private SetActiveRoute = (route: IRoute) => {
-        //if (this.IsDebugToConsoleEnabled)
-        //    console.info("SetActiveRoute('" + route.href + "' params: " + route.params + ")...");
-
         if (route) {
-            //if (this.IsDebugToConsoleEnabled)
-            //    console.info("Changing view to '" + route.href + "', component name: '" + route.component + "'");
-
             this.UpdateActiveFlags(route);
 
             if (window.location.hash !== route.hash)
@@ -428,7 +425,7 @@ export class ViewModelBase {
 	/**
 	 *	Stops listening to on deactivate messages.
 	 */
-    protected UnsubscribeOnDeactivate() {
+    private UnsubscribeOnDeactivate() {
         if (this.postboxSubscription) {
             this.postboxSubscription.dispose();
             this.postboxSubscription = undefined;
@@ -436,9 +433,9 @@ export class ViewModelBase {
     }
 
 	/**
-	 *	Starts listening to on deactivate messages.
+	 *	Starts listening to deactivate messages.
 	 */
-    protected SubscribeOnDeactivate = () => {
+    private SubscribeOnDeactivate = () => {
         this.postboxSubscription = ko.postbox.subscribe("route:navigation", this.OnDeactivateHandler, this);
     }
 
