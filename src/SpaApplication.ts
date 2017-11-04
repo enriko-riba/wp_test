@@ -1,44 +1,6 @@
-﻿import * as ko from "knockout";
-import * as Sammy from "sammy";
+﻿import * as Sammy from "sammy";
 import "knockout-postbox";
 
-/**
-*   1.0.0   initial release
-*   1.0.1   overall fixes and route related features
-*   1.0.2   added route parameters support
-*   1.0.3   added onDeactivate
-*   1.0.4   workaround for issues with canceling navigation and onDeactivate
-*   1.0.5   added field IsDebugToConsoleEnabled
-*   1.0.6   fix for calculating # from url in virtual application
-*   1.0.7   Route ctor: the vm parameter is now a union type, it can be a factory function returning the vm or a vm
-*   1.0.8   Reverted Route ctor as we lack a mechanism for delay loading dependencies so the whole point of constructor functions is pointless
-*
-*   2.0.0   major changes:
-*               - main SPA pages are now ko components not templates
-*               - html layout (see home/Index.cshtml) renders the main page view as a component
-*               - changed route registration (the route ctor has only hash and component name)
-*               - no need to have a viewmodel property per page and import all VM's in main (the
-*                 application gets incrementally loaded as the user navigates through routes)
-*               - component VM's are now plain objects instead of old IRouteViewModels (no need
-*                 to implement activate/onafterrender/deactivate functions)
-*
-*   2.1.0   routing fixes, navigation cancellation support (via postbox) and cleanup
-*   2.1.1	IE fixes related to location's randomly not set when using Sammy
-*   2.1.2	ViewModelBase is now auto registering OnDeactivate
-*   2.1.3	added generic error-handler component and demonstrated how to inject JS variables inside _Layout
-*   2.1.4	added parameter overload for Application.registerComponent()
-*   2.1.5	minor tweaks and large GUI changes (added Demos menu, datatables, switch etc)
-*   2.1.6	minor tweaks and error dialog changes
-*   2.1.7	added support for setting the oldRoute (previous route) inside the postbox handler for edge cases where
-*           the application was not entered via the expected main route and the handler function wants to redirect
-*           to the entry point or some other route
-*   2.1.8   added support for navigating back to a default route (via RouteCheck and canContinue) if the app started
-*           with invalide route (route not found)
-*   2.1.9   added overloads for registering components with:
-*                           registerComponent(name:string) -> (uses default folders),
-*                           registerComponent({ componentName: ..., templatePath: ..., vmPath: ...}) -> explicit syntaxt
-*                           registerComponent({componentName: ...}) -> only name (uses folder Name/Name for both VM and html)
-*/
 export var SPA_VERSION = "2.1.9";
 
 interface ConsoleStyles {

@@ -13,6 +13,7 @@
   "author": "Enriko Riba",
   "license": "ISC",
   "devDependencies": {
+    "@types/firebase": "^2.4.32",
     "@types/jquery": "^3.2.15",
     "@types/knockout": "^3.4.46",
     "@types/knockout.postbox": "0.0.28",
@@ -38,6 +39,7 @@
   },
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "firebase": "^4.6.1",
     "jquery": "^3.2.1",
     "knockout": "^3.4.2",
     "knockout-postbox": "^0.6.0",

@@ -2,8 +2,8 @@
 node_modules/
 jspm_packages/
 dist/
-src/*.js
-src/*.map
+src/**/*.js
+src/**/*.map
 
 # Coverage directory used by tools like istanbul
 coverage

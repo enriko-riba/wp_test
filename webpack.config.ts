@@ -66,7 +66,7 @@ if(isProd){
 
 const config : Config = {
     entry: {
-        common: ["jquery", "bootstrap", "knockout"], // vendor libraries bundle
+        common: ["jquery", "bootstrap", "knockout", "knockout-postbox", "firebase"], // vendor libraries bundle
         main: "./src/main.ts",
     },
     output: {
