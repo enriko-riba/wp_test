@@ -3,13 +3,13 @@ require('./register-components');
 import { Test } from "./test";
 import { Router, Route, Application } from "./SpaApplication";
 import { links } from "./links";
+
 import * as firebase from "firebase/app";
-require("firebase/auth");
-require("firebase/database");
-require("firebase/firestore");
+//require("firebase/firestore");
+
 
 class Main extends Application {
-    private firebaseApp: firebase.app.App;
+    public firebaseApp: firebase.app.App;
 
     constructor() {
         super();
@@ -25,6 +25,8 @@ class Main extends Application {
         this.initRouting();
         this.initFirebase();
     }
+
+   
 
     private initFirebase(){
         // Initialize Firebase

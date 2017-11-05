@@ -8,5 +8,6 @@ require('./components/page-search');
 require('./components/page-events');
 require('./components/page-services');
 require('./components/page-contact');
-
+require('./components/page-signin');
+require('./components/page-protected');
 require('./components/route-not-found');

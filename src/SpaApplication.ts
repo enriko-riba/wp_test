@@ -1,19 +1,21 @@
 ﻿import * as Sammy from "sammy";
 import "knockout-postbox";
 
-export var SPA_VERSION = "2.1.9";
+export var SPA_VERSION = "2.1.10";
 
 interface ConsoleStyles {
     greenFill: string,
     greenFill_light: string,
     red: string,
     redFill: string,
+    yellowFill: string
 }
 var consoleStyle: ConsoleStyles = {
     greenFill: "color:#222;background:#1c1;border: solid 3px #1c1;",
-    greenFill_light: "color:#0;background:#5f5; border: solid 3px #5f5;",
+    greenFill_light: "color:#0;background:#5f5; border: solid 2px #5f5;",
     red: "color:#f11;",
     redFill: "color:#fff;background:#f55; border: solid 3px #f55;",
+    yellowFill: "color:#222;background:#cc1;border: solid 3px #cc1;",
 };
 
 export interface IRoute {
@@ -132,7 +134,7 @@ export class Router {
             sammyRouting.get(route.href, function () {
 
                 if (self.IsDebugToConsoleEnabled)
-                    console.info("%cactivating route " + route.href + ', path: ' + this.path, consoleStyle.greenFill);
+                    console.info(`%cactivating route '${route.href}', path: '${this.path}'`, consoleStyle.greenFill);
 
                 var oldRoute = self.ActiveRoute();
                 var oldPath = oldRoute ? oldRoute.path : "";
@@ -151,7 +153,7 @@ export class Router {
                     }
 
                     if (self.IsDebugToConsoleEnabled && oldRoute)
-                        console.info("%cdeactivated route " + oldRoute.hash, consoleStyle.redFill);
+                        console.info("%cdeactivated route " + oldRoute.hash, consoleStyle.yellowFill);
 
                     //	if here, the route change is allowed
                     route.params = this.params;
@@ -274,7 +276,7 @@ export class Router {
         }
 
         if (this.IsDebugToConsoleEnabled)
-            console.info("%cactivated route " + route.href + ', path: ' + "', component name: '" + route.component + "', params: " + route.params, consoleStyle.greenFill);
+            console.info(`%cactivated route '${route.href}', path: '${route.path}', component name: '${route.component}', params: ${ko.toJSON(route.params)}`, consoleStyle.greenFill);
     }
 
     /**
@@ -312,8 +314,8 @@ export class Application {
     */
     constructor() {
         this.router = ko.observable(new Router());
-        console.info("%c 💜 💛 ❤ \t%cSPAN SPA Application created!\t%c\t ❤ 💜 💛", consoleStyle.red, consoleStyle.greenFill, consoleStyle.red);
-        console.info("\t\t\t%cFramework version:%c\t" + SPA_VERSION + "\t\t", consoleStyle.greenFill, consoleStyle.greenFill_light);
+        console.info("%c⚡⚡⚡ SPA Application created! ⚡⚡⚡\t", consoleStyle.redFill);
+        console.info("%cFramework version:%c\t" + SPA_VERSION + "\t\t", consoleStyle.greenFill_light, consoleStyle.red);
     }
 
     /**

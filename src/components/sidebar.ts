@@ -11,6 +11,7 @@ export class Sidebar {
   private items: Array<LinkItem>;
 
   constructor() {
-    this.items = links;
+    //  return only items with addToMenu flag = true
+    this.items = ko.utils.arrayFilter(links,(item)=> item.addToMenu===true);
   }
 }

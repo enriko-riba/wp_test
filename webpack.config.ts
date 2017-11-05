@@ -32,7 +32,7 @@ let plugins: Array<webpack.Plugin> = [
                                                                 removeRedundantAttributes: true
                                                             }}), 
                                       new ExtractTextPlugin({filename: "bundle.css", disable: false, allChunks: true}),
-                                      new CommonsChunkPlugin({names:["common", "runtime"]}),
+                                      new CommonsChunkPlugin({names:["vendor", "common", "frb", "runtime"]}),
                                       new ProvidePlugin({jQuery: 'jquery',$: 'jquery', jquery: 'jquery', ko: 'knockout'}),
                                     ];
 if(isProd){
@@ -66,7 +66,10 @@ if(isProd){
 
 const config : Config = {
     entry: {
-        common: ["jquery", "bootstrap", "knockout", "knockout-postbox", "firebase"], // vendor libraries bundle
+        vendor:["jquery", "bootstrap"],                         // 1st vendor libraries bundle
+        common: [ "knockout", "knockout-postbox"],              // 2nd vendor libraries bundle
+        frb:["firebase", "firebase/auth","@firebase/firestore"],// 3rd vendor (firebase only libraries)
+        //frbui:["firebaseui"],
         main: "./src/main.ts",
     },
     output: {

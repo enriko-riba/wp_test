@@ -10,5 +10,7 @@ export const links : Array<LinkItem> = [
     new LinkItem('/#/search', 'Module finder', 'page-search'),
     new LinkItem('/#/events', 'Events', 'page-events'),
     new LinkItem('/#/services', 'Services', 'page-services'),
-    new LinkItem('/#/contact', 'Contact', 'page-contact')
+    new LinkItem('/#/contact', 'Contact', 'page-contact'),
+    new LinkItem('/#/signin', 'Sign-in', 'page-signin', false, false),
+    new LinkItem('/#/admin', 'Admin', 'page-protected'),
 ] ;  
