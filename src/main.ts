@@ -1,3 +1,7 @@
+require('bootstrap');
+require('bootstrap/dist/css/bootstrap.min.css');
+require('./css/site.scss');
+
 require('./register-components');
 
 import { Test } from "./test";
@@ -5,7 +9,6 @@ import { Router, Route, Application } from "./SpaApplication";
 import { links } from "./links";
 
 import * as firebase from "firebase/app";
-//require("firebase/firestore");
 
 
 class Main extends Application {
@@ -24,9 +27,32 @@ class Main extends Application {
 
         this.initRouting();
         this.initFirebase();
-    }
 
-   
+        var constraints = {
+            audio: false,
+            video: true
+          };
+          navigator.mediaDevices
+                    .getUserMedia(constraints)
+                    .then(this.handleSuccess)
+                    .catch(this.handleError);
+        var snapshotButton : HTMLElement = document.querySelector('button#snapshot');
+        snapshotButton.onclick = this.snapshotClick.bind(this);
+    }
+    private canvas = document.querySelector('canvas');
+    private video = document.querySelector('video');
+    private handleSuccess = (stream:any) => {
+        this.video.srcObject = stream;
+    }      
+    private handleError = (error:any)=> {
+        console.log('navigator.getUserMedia error: ', error);
+    }
+    private snapshotClick = ()=> {
+        this.canvas.width = this.video.videoWidth;
+        this.canvas.height = this.video.videoHeight;
+        this.canvas.getContext('2d').drawImage(this.video, 0, 0, this.canvas.width, this.canvas.height);
+      };
+
 
     private initFirebase(){
         // Initialize Firebase

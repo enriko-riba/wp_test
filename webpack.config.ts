@@ -21,14 +21,14 @@ const isProd = (env === 'build');
 let plugins: Array<webpack.Plugin> = [
                                       new CleanWebpackPlugin(['dist']), 
                                       new CopyWebpackPlugin([{from: 'src/assets/**/*.jpg', to:'assets/[name].[ext]'}]),
-                                      new CopyWebpackPlugin([{from: 'node_modules/bootstrap/dist/css/bootstrap.min.css', to:'[name].[ext]'}]),
+                                      //new CopyWebpackPlugin([{from: 'node_modules/bootstrap/dist/css/bootstrap.min.css', to:'[name].[ext]'}]),
                                       new CopyWebpackPlugin([{from: 'node_modules/bootstrap/fonts', to:'fonts/[name].[ext]'}]),
                                       new HtmlWebpackPlugin({ template: './src/index.html',
                                                             production: isProd, 
                                                             minify: {
-                                                                collapseWhitespace: true,
-                                                                collapseInlineTagWhitespace: true,
-                                                                removeComments: true,
+                                                                collapseWhitespace: isProd,
+                                                                collapseInlineTagWhitespace: isProd,
+                                                                removeComments: isProd,
                                                                 removeRedundantAttributes: true
                                                             }}), 
                                       new ExtractTextPlugin({filename: "bundle.css", disable: false, allChunks: true}),
@@ -69,7 +69,6 @@ const config : Config = {
         vendor:["jquery", "bootstrap"],                         // 1st vendor libraries bundle
         common: [ "knockout", "knockout-postbox"],              // 2nd vendor libraries bundle
         frb:["firebase", "firebase/auth","@firebase/firestore"],// 3rd vendor (firebase only libraries)
-        //frbui:["firebaseui"],
         main: "./src/main.ts",
     },
     output: {
@@ -122,11 +121,11 @@ const config : Config = {
                 //     {loader: 'css-loader', options: {sourceMap: true}}, 
                 //     {loader: 'sass-loader', options: {sourceMap: true}},
                 // ]
-                use: isProd ?   ExtractTextPlugin.extract({
+                use: /*isProd ?   ExtractTextPlugin.extract({
                                     fallback: "style-loader",
                                     use: ['css-loader', 'sass-loader']
-                                })
-                                : ['style-loader', 'css-loader', 'sass-loader']
+                                }) :*/
+                                ['style-loader', 'css-loader', 'sass-loader']
             },
             {
                 test: /\.css$/,
